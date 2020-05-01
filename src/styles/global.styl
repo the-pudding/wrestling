@@ -170,8 +170,13 @@ header .logo svg
 
 #modal p.description span
 	display inline-block
-	border-bottom 2px solid $gray
+	padding 0 0.25em
+	background-color lighten($accent, 30)
+	box-shadow 2px 2px 0 0 darken($accent, 10)
 	cursor pointer
+
+	&:hover
+		background-color $accent
 
 #modal .explore-nav button
 	width 100%
