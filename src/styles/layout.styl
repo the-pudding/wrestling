@@ -1,0 +1,134 @@
+// -------------------
+// Layouts
+// -------------------
+body
+	padding-top 3rem
+	background linear-gradient(lighten($purple, 30), $purple)
+	background-attachment fixed
+	color $fg
+	font-weight 500
+	font-family $sans
+	font-feature-settings 'kern' 1, 'onum' 0, 'liga' 0, 'tnum' 1
+	-webkit-font-smoothing antialiased
+	-webkit-tap-highlight-color rgba(0, 0, 0, 0)
+
+p
+	line-height 1.625
+
+h1
+	font-size 2em
+
+	+mq('bp-640')
+		font-size 3em
+
+h2
+	font-size 1.5em
+
+	+mq('bp-640')
+		font-size 2.5em
+
+h3
+	font-size 1em
+
+	+mq('bp-640')
+		font-size 2em
+
+h4
+	font-size 1em
+
+	+mq('bp-640')
+		font-size 1.5em
+
+h5
+	font-size 1em
+
+	+mq('bp-640')
+		font-size 1.25em
+
+h6
+	font-size 1em
+
+	+mq('bp-640')
+		font-size 1.125em
+
+p
+	margin 1em 0
+	font-size 1em
+
+	+mq('bp-480')
+		font-size 1.125em
+
+a
+	border-bottom 1px solid $fg
+	color $fg
+	text-decoration none
+
+	&:hover
+		border-bottom 2px solid $accent
+
+	&:visited, &:hover
+		color $fg
+
+strong, b
+	font-weight 700
+
+em, i
+	font-style italic
+
+ul
+	list-style-type none
+
+img, video
+	display block
+	width 100%
+
+button
+	margin 0
+	padding 0
+	outline none
+	border none
+	font-size 1em
+	font-family $sans
+	cursor pointer
+
+sub, sup
+	position relative
+	vertical-align baseline
+	font-size 0.75rem
+	line-height 0
+
+sup
+	top -0.5em
+
+sub
+	bottom -0.25em
+
+.skip-to-main
+	position absolute
+	overflow hidden
+	width 1px
+	height 1px
+	border none
+
+	&:focus
+		z-index 1000
+		padding 0.5rem
+		width auto
+		height auto
+		background-color $off-white
+
+@font-face
+	font-weight 500
+	font-style normal
+	font-stretch normal
+	font-family 'National 2 Web'
+	src url('https://pudding.cool/assets/fonts/national/National2Web-Regular.woff2') format('woff2'), url('https://pudding.cool/assets/fonts/national/National2Web-Regular.woff') format('woff')
+	font-display swap
+
+@font-face
+	font-weight 700
+	font-style normal
+	font-stretch normal
+	font-family 'National 2 Web'
+	src url('https://pudding.cool/assets/fonts/national/National2Web-Bold.woff2') format('woff2'), url('https://pudding.cool/assets/fonts/national/National2Web-Bold.woff') format('woff')
+	font-display swap

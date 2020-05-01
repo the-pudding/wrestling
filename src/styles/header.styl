@@ -1,0 +1,101 @@
+@require './../styles/variables'
+@require './../styles/helpers'
+
+header
+	position fixed
+	top 0
+	left 0
+	z-index 1000
+	display flex
+	justify-content space-between
+	align-items center
+	width 100%
+	height $header-height
+	background-color $bg
+	transform translate3d(0, 0, 0)
+
+.header--intro, .header--not
+	display none
+	width 100%
+
+	&.visible
+		display flex
+
+.header--intro
+	justify-content flex-end
+
+	+mq('bp-640')
+		justify-content space-between
+		align-items center
+
+h4
+	padding-left 1rem
+
+.mobile
+	display block
+	display flex
+	justify-content space-between
+	align-items center
+	margin-left 3rem
+	padding-right 1rem
+	width 100%
+
+	+mq('bp-960')
+		display none
+
+.desktop
+	display none
+	margin-left 3rem
+	padding-right 1rem
+
+	+mq('bp-960')
+		display flex
+		justify-content space-between
+		align-items center
+		width 100%
+
+.wordmark
+	position absolute
+	top 50%
+	left 1rem
+	display block
+	margin 0
+	width 7rem
+	transform translate(0, -50%)
+
+	+mq('bp-640')
+		left 50%
+		width 8rem
+		transform translate(-50%, -50%)
+
+	a
+		display block
+		width 100%
+		border none
+
+.logo
+	position absolute
+	top 50%
+	left 1rem
+	display block
+	margin 0
+	width 1.25rem
+	transform translate(0, -50%)
+
+	a
+		display block
+		width 100%
+		border none
+
+p.updated
+	display none
+	margin 0
+	margin-left 0.5rem
+	font-size 1em
+	line-height 1
+
+	+mq('bp-640')
+		display block
+
+.language
+	margin-right 0.5rem

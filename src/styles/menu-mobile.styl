@@ -1,0 +1,50 @@
+@require './../styles/variables'
+@require './../styles/helpers'
+
+.right
+	display flex
+	align-items center
+
+.long-prompt
+	display none
+
+	&.visible
+		display block
+
+.ui
+	display none
+
+	&.visible
+		display block
+
+p.label
+	margin 0
+	color $white
+	text-transform uppercase
+	font-weight 700
+	font-size 0.75em
+
+.about
+	display block
+	margin 0
+	margin-top 1rem
+
+.drawer
+	position absolute
+	top 0
+	right 0
+	z-index 100
+	padding 1rem
+	max-width 30rem
+	width 100%
+	background-color $bg
+	color $bg
+	transition all 250ms ease-in-out
+	transform translateY(-100%)
+
+	&.visible
+		top $header-height
+		transform translateY(0)
+
+	select
+		margin-bottom 1rem

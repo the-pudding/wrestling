@@ -1,0 +1,22 @@
+@require './../styles/variables'
+@require './../styles/helpers'
+
+#explore
+	visibility hidden
+	min-height 101vh
+	width 100%
+	pointer-events none
+
+	&.visible
+		visibility visible
+
+	&.interactive
+		pointer-events auto
+
+	+mq('bp-960')
+		width calc(100% - 432px)
+
+.wrestlers
+	position relative
+	margin 0 auto
+	height 100%

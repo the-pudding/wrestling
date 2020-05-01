@@ -1,0 +1,26 @@
+{
+  "site": "https://pudding.cool",
+  "siteName": "The Pudding",
+  "url": "https://pudding.cool/2020/05/wrestling/",
+  "keywords": "wrestling, masked, mask, wrestlers, 8-bit, illustrated, drawing",
+  "imgFacebook": "https://pudding.cool/2020/05/wrestling/images/social-facebook.jpg",
+  "imgTwitter": "https://pudding.cool/2020/05/wrestling/images/social-twitter.jpg",
+  "author": {
+    "name": "Russell",
+    "full": "Russell Goldenberg",
+    "url": "https://pudding.cool/author/russell-goldenberg",
+    "twitterHandle": "@codenberg"
+  },
+  "author2": {
+    "name": "Gwendal",
+    "full": "Gwendal Uguen",
+    "url": "https://pudding.cool/author/gwendal-uguen"
+  },
+  "author3": {
+    "name": "Jan",
+    "full": "Jan Diehm",
+    "url": "https://pudding.cool/author/jan-diehm"
+  },
+  "analytics": "UA-90567923-1",
+  "lorem": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis neque sit amet sollicitudin vehicula. Maecenas fringilla mi non lacus mattis elementum. Curabitur dignissim faucibus justo."
+}

@@ -1,0 +1,122 @@
+@require './../styles/variables'
+@require './../styles/helpers'
+
+#intro
+	position fixed
+	top $header-height
+	left 0
+	z-index 1000
+	overflow hidden
+	padding 1rem
+	width 100%
+	height 100%
+	opacity 0
+	pointer-events none
+
+	&.visible
+		opacity 1
+		pointer-events auto
+
+h1
+	position absolute
+	overflow hidden
+	width 1px
+	height 1px
+	color transparent
+
+.choices
+	display flex
+	flex-direction column
+	justify-content center
+	margin 0 auto
+	max-width 40rem
+	text-align center
+
+	+mq('bp-640')
+		flex-direction row
+
+.choice
+	margin-bottom 1rem
+	width 100%
+
+	+mq('bp-640')
+		width 50%
+
+	ul
+		display flex
+		flex-direction column
+		justify-content center
+
+	li
+		display block
+		margin 0.5rem 0
+
+		button
+			width 11rem
+
+	p.label
+		text-transform uppercase
+		font-weight 700
+
+p.loading
+	text-align center
+
+p.byline
+	position absolute
+	bottom 0
+	left 0
+	padding 0 1rem
+	width 100%
+	text-align center
+	font-size 0.8em
+
+	+mq('bp-480')
+		font-size 1em
+
+.language
+	position fixed
+	top 0
+	right 0
+	padding 1rem
+
+	button
+		margin 0
+		padding 0
+		border none
+		border-bottom 1px solid $fg
+		background transparent
+		line-height 1.4
+
+		&:hover
+			border-bottom 2px solid $accent
+			box-shadow none
+
+canvas
+	margin 0 auto
+
+.bg
+	position absolute
+	top 0
+	left 0
+	z-index -1
+	width 106.25%
+	height 300vh
+	background-image url('../assets/images/spritesheet.png')
+	background-position 0 0
+	background-size 200% auto
+	opacity 0
+	transition opacity 1s
+	animation test 120s linear infinite forwards
+
+	+mq('bp-640')
+		background-size 100% auto
+
+	&.visible
+		opacity 0.2
+
+@keyframes test
+	0%
+		background-position-y 0
+
+	100%
+		background-position-y -300vh

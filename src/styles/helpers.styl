@@ -1,0 +1,14 @@
+mq(breakpoint)
+	if (breakpoint in $mq_vars)
+		condition = unquote($mq_vars[breakpoint])
+		condition = 'only screen and %s' % condition
+
+		@media condition
+			{block}
+	else
+		error('Not a defined media query')
+
+hover()
+	+mq('hover')
+		&:hover
+			{block}
