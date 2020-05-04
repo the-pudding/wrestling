@@ -19,7 +19,7 @@
   export let sz;
 
   const BASE = 160;
-
+  // $: console.log(sz);
   $: div = BASE / sz;
   $: pos = `-${Math.round(x / div)}px -${Math.round(y / div)}px`;
   $: size = `${Math.round(w / div)}px ${Math.round(h / div)}px`;
