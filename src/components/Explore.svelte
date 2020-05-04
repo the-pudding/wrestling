@@ -61,7 +61,7 @@
       d.sz = sz - MARGIN * 2;
     });
 
-    if ($onDeck) {
+    if ($onDeck && $mode === "explore") {
       const inactive = exploreData.find(d => d.id === $onDeck.id && d.inactive);
       if (inactive) $onDeck = exploreData.find(d => !d.inactive);
     }

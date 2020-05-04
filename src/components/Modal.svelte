@@ -179,7 +179,7 @@
 
     reveal = true;
     runTransition();
-    if ($mode === "story") center();
+    center();
   }
 
   function handleKeyup(e) {

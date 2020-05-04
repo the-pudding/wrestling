@@ -32,7 +32,6 @@
     return {
       delay: index,
       duration: 1000,
-      // easing: cubicIn,
       css: t => {
         return `top: ${t * top}px;`;
       }
@@ -43,7 +42,6 @@
     return {
       delay: 3000,
       duration: 1000,
-      // easing: cubicIn,
       css: t => {
         return `top: ${t * top}px; left: ${t * left}px;`;
       }
@@ -53,7 +51,6 @@
   function animateOut(node) {
     return {
       duration: index,
-      // easing: cubicIn,
       css: (t, u) => {
         return `top: ${top + u * $windowHeight}px; opacity: ${t}`;
       }
@@ -67,7 +64,7 @@
   out:animateOut
   class="wrestler"
   class:inactive
-  class:selected="{$onDeck ? $onDeck.index === index : false}"
+  class:selected="{$onDeck ? $onDeck.id === id : false}"
   on:click="{handleClick}"
   style="top: {top}px; left: {left}px;">
   <p>{typeof index === 'number' ? index + 1 : index}</p>
