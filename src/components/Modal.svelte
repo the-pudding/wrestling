@@ -56,7 +56,7 @@
 
   $: maxMult = $windowHeight < 750 ? 3 : 5;
   $: mult = Math.min(maxMult, Math.floor((clientWidth - PADDING) / $rawSize));
-  $: width = $rawSize * mult;
+  $: width = Math.max(240, $rawSize * mult);
   $: height = width;
   $: currentStory = $copy.stories.find(d => d.hed[0].text === $storyHed);
   $: if (currentStory) {
