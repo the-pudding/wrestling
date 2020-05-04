@@ -53,6 +53,14 @@ p.description
 	width 100%
 	text-align center
 
+	button
+		background-color lighten($accent, 30)
+		box-shadow 2px 2px 0 0 darken($accent, 10)
+		color $off-black
+
+		&:hover
+			background-color $accent
+
 	+mq('bp-960')
 		display none
 

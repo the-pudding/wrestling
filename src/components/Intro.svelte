@@ -47,7 +47,8 @@
   }
 
   function handleStoryClick() {
-    $storyHed = this.innerText;
+    const en = this.querySelector(".lang--en");
+    $storyHed = en.innerHTML;
   }
 
   function drawPixel(p) {
@@ -102,7 +103,7 @@
   bind:clientWidth
   style="height: {h}px;">
   <div class="bg" class:visible="{sprited}"></div>
-  <h1>$copy.title[0].text</h1>
+  <h1>{$copy.title[0].text}</h1>
   <OffscreenIntro {width} height="{height * 2}" on:pixels="{handlePixels}" />
   <canvas
     bind:this="{canvas}"
