@@ -1,18 +1,17 @@
 import * as d3Array from "d3-array";
 
-function generateSpeeds(chunks) {
+function generateSpeeds({ chunks, chunkType }) {
   const s = {};
   const base = 0.5;
   d3Array.range(chunks).map(a => {
     d3Array.range(chunks).map(b => {
-      // chunks - index
-      // s[`${a}${b}`] = 2 + b / a;
-      // chunks - ordered
-      // s[`${a}${b}`] = 0.25 + b * 0.25 + Math.random() * b * 0.25;
-      // chunks-sand
-      const y = (b / chunks) * 1.5;
-      const r = (b / chunks) * Math.random() * 0.5;
-      s[`${a}${b}`] = base + y + r;
+      if (chunkType === "grains") {
+        const y = (b / chunks) * 1.5;
+        const r = (b / chunks) * Math.random() * 0.5;
+        s[`${a}${b}`] = base + y + r;
+      } else if (chunkType === "ordered")
+        s[`${a}${b}`] = 0.25 + b * 0.25 + Math.random() * b * 0.25;
+      else if (chunkType === "index") s[`${a}${b}`] = 2 + b / a;
     });
   });
   return s;
@@ -24,9 +23,11 @@ export default function prepareTransition({
   width,
   height,
   style = "fax",
-  chunks = 2
+  chunks = 2,
+  chunkType = "index"
 }) {
-  const speeds = style === "sand" ? generateSpeeds(chunks) : null;
+  const speeds =
+    style === "sand" ? generateSpeeds({ chunks, chunkType }) : null;
 
   const setSpeed = (p, dir) => {
     switch (style) {

@@ -157,7 +157,8 @@
       enter,
       exit,
       style: "fax",
-      chunks: $rawSize,
+      // chunks: 32,
+      // chunkType: "ordered",
       height: $rawSize,
       width: $rawSize
     });

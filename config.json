@@ -1,0 +1,22 @@
+{
+  "google": {
+    "doc": [
+      {
+        "id": "1cURiyuBaNfrCmWU5rj9hxIR2oOKi3rcCnDTbCNYM80M",
+        "filepath": "src/data/copy.json"
+      }
+    ],
+    "sheet": [
+      {
+        "id": "1_8xz9Ws2gtOL2lMQKm7T0IacvO-i3LIY6m3ZLX3dKC0",
+        "gid": "0",
+        "filepath": "process/wrestler-data.csv"
+      },
+      {
+        "id": "1_8xz9Ws2gtOL2lMQKm7T0IacvO-i3LIY6m3ZLX3dKC0",
+        "gid": "1932623068",
+        "filepath": "src/data/lexicon.csv"
+      }
+    ]
+  }
+}
