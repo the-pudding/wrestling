@@ -72,6 +72,14 @@
     widthWrestlers = units * sz;
   }
   afterUpdate(resize);
+
+  // onMount(() => {
+  //   let i = 0;
+  //   setInterval(() => {
+  //     i += 1;
+  //     $onDeck = exploreData[i];
+  //   }, 1500);
+  // });
 </script>
 
 <section
