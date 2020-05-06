@@ -49,6 +49,13 @@
     "dev": "rollup -c -w",
     "predeploy": "rollup -c",
     "deploy": "rollup -c rollup.config-ssr.js",
-    "start": "sirv public"
+    "start": "sirv public",
+    "doc": "node tasks/fetch-doc.js",
+    "sheet": "node tasks/fetch-sheet.js",
+    "rename": "node tasks/rename.js",
+    "resize": "node tasks/resize.js",
+    "sprite": "node tasks/sprite.js",
+    "join": "node tasks/join.js",
+    "data": "npm run doc && npm run sheet && npm run rename && npm run resize && npm run sprite && npm run join"
   }
 }

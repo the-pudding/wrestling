@@ -5,7 +5,7 @@
 
 button
 	display inline-block
-	padding 0.325em 0.5em
+	padding 0.5em 0.5em
 	background-color $fg
 	box-shadow 2px 2px 0 1px $black
 	color $black
@@ -148,8 +148,22 @@ header .logo svg
 		fill darken($fg, 10)
 
 #modal .name button
+	position relative
 	width 1.5rem
 	height 1.5rem
+
+	&:after
+		position absolute
+		top 0
+		top 50%
+		right 0
+		display block
+		width 4rem
+		color $off-black
+		content 'More Info'
+		text-align left
+		font-size 12px
+		transform translate(110%, -50%)
 
 	svg
 		display block
@@ -157,16 +171,16 @@ header .logo svg
 		height 100%
 
 		circle
-			fill $gray
-			stroke none
+			fill lighten($accent, 30)
+			stroke darken($accent, 10)
 
 		line
-			stroke $fg
+			stroke $off-black
 
 	+hover()
 		svg
 			circle
-				fill $black
+				fill $accent
 
 #modal p.description span
 	display inline-block

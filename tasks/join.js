@@ -88,4 +88,4 @@ const data = wrestlerData.map(d => ({
 data.sort((a, b) => d3Array.ascending(+a.name_wrestling, +b.name_wrestling));
 const output = dsv.csvFormat(data);
 
-fs.writeFileSync("./static/data/wrestlers.csv", output);
+fs.writeFileSync("./public/assets/data/wrestlers.csv", output);
