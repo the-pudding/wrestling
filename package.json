@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "archieml": "^0.4.2",
+    "body-scroll-lock": "^3.0.2",
     "d3-array": "^2.4.0",
     "d3-collection": "^1.0.7",
     "d3-dsv": "^1.2.0",

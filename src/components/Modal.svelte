@@ -4,6 +4,11 @@
 
 <script>
   import jump from "jump.js";
+  import {
+    disableBodyScroll,
+    enableBodyScroll,
+    clearAllBodyScrollLocks
+  } from "body-scroll-lock";
   import lang from "./../components/utils/lang.js";
   import move from "./../components/utils/move.js";
   import prepareTransition from "./../components/utils/prepare-transition.js";
@@ -30,7 +35,6 @@
 
   let canvas;
   let ctx;
-  let visible;
   let index = "";
   let nameWrestling = "";
   let nameCrew = "";
@@ -53,6 +57,7 @@
   let slideText = "";
   let slideTitle = "";
   let reveal;
+  let modalEl;
 
   $: maxMult = $windowHeight < 750 ? 3 : 5;
   $: mult = Math.min(maxMult, Math.floor((clientWidth - PADDING) / $rawSize));
@@ -80,6 +85,12 @@
   }
   $: if ($mode === "story") {
     reveal = true;
+  }
+
+  $: if (["explore", "story"].includes($mode) && reveal && $mobile) {
+    disableBodyScroll(modalEl);
+  } else {
+    enableBodyScroll(modalEl);
   }
 
   onMount(() => {
@@ -205,6 +216,7 @@
 
 <section
   id="modal"
+  bind:this="{modalEl}"
   class:reveal
   class:visible="{$mode !== 'intro'}"
   bind:clientWidth

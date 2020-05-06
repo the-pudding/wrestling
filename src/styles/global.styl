@@ -30,19 +30,25 @@ button
 				color $accent
 
 	&.dark
-		background-color $gray
+		background-color lighten($accent, 30)
 		box-shadow none
-		color $fg
+		color $bg
 
 		+hover()
-			background-color $black
+			background-color $accent
+
+		&:first-of-type svg
+			transform translate(-1px, 2px)
+
+		&:last-of-type svg
+			transform translate(1px, 2px)
 
 		svg
 			width 75%
 			height 75%
 
 			polyline
-				stroke $fg
+				stroke $off-black
 
 	+hover()
 		background-color $yellow
@@ -167,8 +173,8 @@ header .logo svg
 
 	svg
 		display block
-		width 100%
-		height 100%
+		width 26px
+		height 26px
 
 		circle
 			fill lighten($accent, 30)
