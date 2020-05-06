@@ -3,10 +3,11 @@
 </style>
 
 <script>
-  import { onMount } from "svelte";
+  import { onMount, createEventDispatcher } from "svelte";
   import { fade } from "svelte/transition";
   import { cubicIn } from "svelte/easing";
   import { onDeck, mode, windowHeight } from "./../components/utils/stores.js";
+
   export let index;
   export let id;
   export let x;
@@ -18,6 +19,7 @@
   export let inactive;
   export let sz;
 
+  const dispatch = createEventDispatcher();
   const BASE = 160;
   // $: console.log(sz);
   $: div = BASE / sz;
@@ -26,6 +28,7 @@
 
   function handleClick() {
     if ($mode === "explore") $onDeck = { index, id, x, y };
+    else if (inactive) dispatch("popup", { pos });
   }
 
   function animateIn(node) {

@@ -20,6 +20,9 @@
   // let widthWrestlers;
   // let units;
   let exploreData = [];
+  let showPopup = false;
+  let popX = 0;
+  let popY = 0;
 
   const MARGIN = 8;
 
@@ -70,9 +73,16 @@
 
   $: units = Math.floor(width / sz);
   $: widthWrestlers = units * sz;
+
   function resize() {
     width = exploreEl.clientWidth;
   }
+
+  function handlePopup(event) {
+    showPopup = true;
+    setTimeout(() => (showPopup = false), 3000);
+  }
+
   afterUpdate(resize);
 
   // onMount(() => {
@@ -92,8 +102,15 @@
   bind:this="{exploreEl}">
   <div class="wrestlers" style="width: {widthWrestlers}px;">
     {#each exploreData as d (d.index)}
-      <Wrestler {...d} />
+      <Wrestler {...d} on:popup="{handlePopup}" />
     {/each}
+  </div>
+  <div class="popup" class:visible="{showPopup}">
+    <p>
+      Go back to
+      <span>explore mode</span>
+      to see all masks.
+    </p>
   </div>
 </section>
 

@@ -5,7 +5,7 @@
 	visibility hidden
 	min-height 101vh
 	width 100%
-	pointer-events none
+	cursor pointer
 
 	&.visible
 		visibility visible
@@ -21,3 +21,24 @@
 	position relative
 	margin 0 auto
 	height 100%
+
+.popup
+	position fixed
+	right 1rem
+	bottom 1rem
+	z-index set-index(overlay)
+	padding 0 1rem
+	background $fg
+	box-shadow 4px 4px 0 2px $black
+	color $off-black
+	opacity 0
+	transition opacity 250ms
+
+	p
+		margin 0
+
+	span
+		font-weight bold
+
+	&.visible
+		opacity 1

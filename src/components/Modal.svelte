@@ -70,11 +70,12 @@
     slideIndex = 0;
   }
 
-  $: $onDeck = currentStory
-    ? $data.find(
-        d => d.id === currentStory.slides[slideIndex].wrestler.toLowerCase()
-      )
-    : null;
+  $: $onDeck =
+    currentStory && currentStory.slides[slideIndex]
+      ? $data.find(
+          d => d.id === currentStory.slides[slideIndex].wrestler.toLowerCase()
+        )
+      : null;
   $: modalH = Math.max(0, $windowHeight - $HEADER_HEIGHT);
   $: if ($mode === "story" && currentStory && slideIndex > -1) {
     slideText = getText("body");
