@@ -19,7 +19,7 @@
 		height $thumb-size
 
 	+hover()
-		z-index 1000
+		z-index set-index(middle)
 		outline 2px solid $accent
 		// box-shadow 4px 4px 0px 2px $black
 		opacity 1
@@ -30,7 +30,7 @@
 		pointer-events none
 
 	&.selected
-		z-index 1000
+		z-index set-index(middle)
 		outline 2px solid $primary
 		box-shadow 4px 4px 0px 2px $black
 		opacity 1
