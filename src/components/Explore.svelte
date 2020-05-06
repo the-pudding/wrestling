@@ -16,8 +16,9 @@
   } from "./../components/utils/stores.js";
   import Wrestler from "./../components/Wrestler.svelte";
   let width;
-  let widthWrestlers;
-  let units;
+  let exploreEl;
+  // let widthWrestlers;
+  // let units;
   let exploreData = [];
 
   const MARGIN = 8;
@@ -67,9 +68,10 @@
     }
   }
 
+  $: units = Math.floor(width / sz);
+  $: widthWrestlers = units * sz;
   function resize() {
-    units = Math.floor(width / sz);
-    widthWrestlers = units * sz;
+    width = exploreEl.clientWidth;
   }
   afterUpdate(resize);
 
@@ -87,7 +89,7 @@
   style="height: {height}px"
   class:visible="{$mode !== 'intro'}"
   class:interactive="{$mode === 'explore'}"
-  bind:clientWidth="{width}">
+  bind:this="{exploreEl}">
   <div class="wrestlers" style="width: {widthWrestlers}px;">
     {#each exploreData as d (d.index)}
       <Wrestler {...d} />
