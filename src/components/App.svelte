@@ -16,7 +16,7 @@
   $: if (mounted) {
     if ($prevMode !== $mode && $prevMode !== "about" && $mode !== "intro") {
       history.pushState($prevMode, null, `?${$mode}`);
-    } else if ($prevMode === "about")
+    } else if ($prevMode === "about" && $mode !== "intro")
       history.replaceState(null, null, `?${$mode}`);
     else history.replaceState(null, null, path);
   }
