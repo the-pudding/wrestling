@@ -7,6 +7,7 @@
   import * as d3Array from "d3-array";
   import { onMount, afterUpdate } from "svelte";
   import {
+    copy,
     data,
     mode,
     filters,
@@ -17,6 +18,7 @@
     slideIndex,
     onDeck
   } from "./../components/utils/stores.js";
+  import lang from "./../components/utils/lang.js";
   import Wrestler from "./../components/Wrestler.svelte";
   let width;
   let exploreEl;
@@ -135,9 +137,7 @@
   </div>
   <div class="popup" class:visible="{showPopup}">
     <p>
-      Go back to
-      <span>explore mode</span>
-      to see all masks.
+      {@html lang($copy.popup)}
     </p>
   </div>
 </section>
