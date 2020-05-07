@@ -3,6 +3,7 @@
 </style>
 
 <script>
+  import { onMount } from "svelte";
   import Intro from "./../components/Intro.svelte";
   import Explore from "./../components/Explore.svelte";
   import Modal from "./../components/Modal.svelte";
