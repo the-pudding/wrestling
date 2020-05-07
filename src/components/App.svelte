@@ -11,11 +11,10 @@
   import { prevMode, mode } from "./../components/utils/stores.js";
 
   let path = "";
+  let mounted = false;
 
-  $: {
-    console.log($prevMode, $mode);
+  $: if (mounted) {
     if ($prevMode !== $mode && $prevMode !== "about" && $mode !== "intro") {
-      console.log("inside");
       history.pushState($prevMode, null, `?${$mode}`);
     } else if ($prevMode === "about")
       history.replaceState(null, null, `?${$mode}`);
@@ -28,6 +27,7 @@
 
   onMount(() => {
     path = window.location.pathname;
+    mounted = true;
   });
 </script>
 
