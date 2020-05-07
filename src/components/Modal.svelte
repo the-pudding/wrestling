@@ -46,6 +46,7 @@
   let description = "";
   let years = "";
   let nationality = "";
+  let unclicked = true;
 
   let clientWidth = 0;
   let prev = { id: null };
@@ -241,7 +242,13 @@
     </p>
     <h4 class="name">
       <strong>{nameWrestling}</strong>
-      <button class="alt" on:click="{() => (showInfo = !showInfo)}">
+      <button
+        class="alt"
+        class:unclicked
+        on:click="{() => {
+          showInfo = !showInfo;
+          unclicked = false;
+        }}">
         <span class:visible="{!showInfo}">
           {@html svgPlus}
         </span>
