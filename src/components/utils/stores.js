@@ -85,5 +85,11 @@ export const language = writable("en");
 export const exploreWidth = writable(0);
 export const filters = writable({});
 export const sprite = writable();
+export const slideIndex = writable(0);
+export const currentStory = derived(
+  storyHed,
+  $s => copyData.stories.find(d => d.hed[0].text === $s),
+  null
+);
 
 // export const current = derived(onDeck, $d => ($d.length ? $d.length : 0));

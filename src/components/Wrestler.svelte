@@ -29,6 +29,7 @@
   function handleClick() {
     if ($mode === "explore") $onDeck = { index, id, x, y };
     else if (inactive) dispatch("popup", { pos });
+    else dispatch("inc", { id });
   }
 
   function animateIn(node) {

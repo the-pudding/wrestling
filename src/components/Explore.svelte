@@ -12,6 +12,9 @@
     filters,
     mobile,
     thumbSize,
+    currentStory,
+    storyHed,
+    slideIndex,
     onDeck
   } from "./../components/utils/stores.js";
   import Wrestler from "./../components/Wrestler.svelte";
@@ -21,11 +24,11 @@
   // let units;
   let exploreData = [];
   let showPopup = false;
-  let popX = 0;
-  let popY = 0;
 
   const MARGIN = 8;
-
+  $: storyWrestlers = $currentStory
+    ? $currentStory.slides.map(d => d.wrestler.toLowerCase())
+    : [];
   $: sz = $thumbSize + MARGIN * 2;
   $: height =
     $mode === "about"
@@ -46,19 +49,36 @@
       return false;
     };
 
+    const storyHide = d => {
+      if ($mode === "story" && storyWrestlers) {
+        return !storyWrestlers.find(v => v === d.id);
+      }
+      return false;
+    };
+
     exploreData = $data.map(d => ({
       ...d,
-      inactive: hide(d) || $mode === "story"
+      inactive: hide(d) || storyHide(d)
     }));
-    exploreData.sort(
-      (a, b) =>
-        d3Array.ascending(a.inactive, b.inactive) ||
-        d3Array.ascending(
-          typeof a.index === "string",
-          typeof b.index === "string"
-        ) ||
-        d3Array.ascending(a.id, b.id)
-    );
+
+    if ($mode === "explore")
+      exploreData.sort(
+        (a, b) =>
+          d3Array.ascending(a.inactive, b.inactive) ||
+          d3Array.ascending(
+            typeof a.index === "string",
+            typeof b.index === "string"
+          ) ||
+          d3Array.ascending(a.id, b.id)
+      );
+    else
+      exploreData.sort(
+        (a, b) =>
+          d3Array.ascending(
+            typeof a.index === "string",
+            typeof b.index === "string"
+          ) || d3Array.ascending(a.id, b.id)
+      );
     exploreData.forEach((d, i) => {
       d.left = MARGIN + (i % units) * sz;
       d.top = Math.floor(i / units) * sz;
@@ -83,6 +103,14 @@
     setTimeout(() => (showPopup = false), 3000);
   }
 
+  function handleInc(event) {
+    const id = event.detail.id.toLowerCase();
+    const index = $currentStory.slides.findIndex(
+      d => d.wrestler.toLowerCase() === id
+    );
+    if (index > -1) $slideIndex = index;
+  }
+
   afterUpdate(resize);
 
   // onMount(() => {
@@ -102,7 +130,7 @@
   bind:this="{exploreEl}">
   <div class="wrestlers" style="width: {widthWrestlers}px;">
     {#each exploreData as d (d.index)}
-      <Wrestler {...d} on:popup="{handlePopup}" />
+      <Wrestler {...d} on:popup="{handlePopup}" on:inc="{handleInc}" />
     {/each}
   </div>
   <div class="popup" class:visible="{showPopup}">

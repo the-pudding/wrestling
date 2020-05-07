@@ -22,6 +22,8 @@
     storyHed,
     windowHeight,
     language,
+    currentStory,
+    slideIndex,
     mobile
   } from "./../components/utils/stores.js";
   import { onMount, afterUpdate } from "svelte";
@@ -45,7 +47,6 @@
   let years = "";
   let nationality = "";
 
-  let slideIndex = 0;
   let clientWidth = 0;
   let prev = { id: null };
   let livePixels = {};
@@ -63,21 +64,20 @@
   $: mult = Math.min(maxMult, Math.floor((clientWidth - PADDING) / $rawSize));
   $: width = Math.max(240, $rawSize * mult);
   $: height = width;
-  $: currentStory = $copy.stories.find(d => d.hed[0].text === $storyHed);
-  $: if (currentStory) {
+  $: if ($currentStory) {
     disableL = true;
     disableR = false;
-    slideIndex = 0;
+    $slideIndex = 0;
   }
 
   $: $onDeck =
-    currentStory && currentStory.slides[slideIndex]
+    $currentStory && $currentStory.slides[$slideIndex]
       ? $data.find(
-          d => d.id === currentStory.slides[slideIndex].wrestler.toLowerCase()
+          d => d.id === $currentStory.slides[$slideIndex].wrestler.toLowerCase()
         )
       : null;
   $: modalH = Math.max(0, $windowHeight - $HEADER_HEIGHT);
-  $: if ($mode === "story" && currentStory && slideIndex > -1) {
+  $: if ($mode === "story" && $currentStory && $slideIndex > -1) {
     slideText = getText("body");
     slideTitle = getText("title");
   }
@@ -94,6 +94,11 @@
     enableBodyScroll(modalEl);
   }
 
+  $: if ($currentStory) {
+    disableR = $slideIndex === $currentStory.slides.length - 1;
+    disableL = $slideIndex === 0;
+  }
+
   onMount(() => {
     ctx = canvas.getContext("2d");
   });
@@ -108,11 +113,9 @@
   }
 
   function inc(val) {
-    const last = currentStory.slides.length - 1;
-    const m = Math.min(slideIndex + val, last);
-    slideIndex = Math.max(0, m);
-    disableR = slideIndex === last;
-    disableL = slideIndex === 0;
+    const last = $currentStory.slides.length - 1;
+    const m = Math.min($slideIndex + val, last);
+    $slideIndex = Math.max(0, m);
     pulse = false;
   }
 
@@ -204,7 +207,7 @@
   }
 
   function getText(prop) {
-    const slide = currentStory.slides[slideIndex];
+    const slide = $currentStory.slides[$slideIndex];
     return slide[prop].find(v => v.lang === $language).text;
   }
 
@@ -300,7 +303,7 @@
             {@html description}
           </p>
         </div>
-      {:else if $mode === 'story' && currentStory}
+      {:else if $mode === 'story' && $currentStory}
         <div class="story">
           <p class="description">
             <strong>{slideTitle}:</strong>
@@ -311,7 +314,7 @@
     </div>
   </div>
 
-  {#if $mode === 'story' && currentStory}
+  {#if $mode === 'story' && $currentStory}
     <nav class="story-nav">
       <button
         class="dark"
@@ -320,8 +323,8 @@
         {@html svgLeft}
       </button>
       <ul class="progress">
-        {#each currentStory.slides as slide, i}
-          <li class:active="{slideIndex === i}"></li>
+        {#each $currentStory.slides as slide, i}
+          <li class:active="{$slideIndex === i}"></li>
         {/each}
       </ul>
       <button
