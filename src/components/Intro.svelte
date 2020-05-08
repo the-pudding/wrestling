@@ -94,14 +94,13 @@
 
   onMount(() => {
     ctx = canvas.getContext("2d");
+    setTimeout(() => {
+      $mode = "explore";
+    }, 4000);
   });
 </script>
 
-<section
-  id="intro"
-  class:visible="{$mode === 'intro'}"
-  bind:clientWidth
-  style="height: {h}px;">
+<section id="intro" class:visible="{$mode === 'intro'}" bind:clientWidth>
   <div class="bg" class:visible="{sprited}"></div>
   <h1>{$copy.title[0].text}</h1>
   <OffscreenIntro {width} height="{height * 2}" on:pixels="{handlePixels}" />

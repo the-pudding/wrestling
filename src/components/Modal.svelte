@@ -61,8 +61,8 @@
   let reveal;
   let modalEl;
 
-  $: maxMult = $windowHeight < 750 ? 3 : 5;
-  $: mult = Math.min(maxMult, Math.floor((clientWidth - PADDING) / $rawSize));
+  $: maxMult = $windowHeight < 750 ? 3 : 7;
+  $: mult = 6;
   $: width = Math.max(240, $rawSize * mult);
   $: height = width;
   $: if ($currentStory) {
@@ -213,7 +213,14 @@
   }
 
   mode.subscribe(d => {
-    if (d === "explore" && !$mobile) $onDeck = $data[0];
+    if (d === "explore" && !$mobile) {
+      let i = 0;
+      setInterval(() => {
+        i += 1;
+        $onDeck = $data[i];
+      }, 4000);
+      setTimeout(() => ($onDeck = $data[0]), 500);
+    }
   });
 </script>
 
@@ -224,8 +231,7 @@
   bind:this="{modalEl}"
   class:reveal
   class:visible="{$mode !== 'intro'}"
-  bind:clientWidth
-  style="height: {modalH}px">
+  bind:clientWidth>
   <Offscreen
     width="{$rawSize}"
     height="{$rawSize}"
@@ -237,117 +243,26 @@
     style="width: {width}px; height: {height}px;"></canvas>
 
   <div class="person">
-    <p class="crew">
-      <em>{nameCrew}</em>
-    </p>
-    <h4 class="name">
-      <strong>{nameWrestling}</strong>
-      <button
-        class="alt"
-        class:unclicked
-        on:click="{() => {
-          showInfo = !showInfo;
-          unclicked = false;
-        }}">
-        <span class:visible="{!showInfo}">
-          {@html svgPlus}
-        </span>
-        <span class:visible="{showInfo}">
-          {@html svgX}
-        </span>
-      </button>
-    </h4>
-  </div>
-
-  <div class="info" class:visible="{showInfo}">
+    <!-- <p class="crew">{nameCrew}</p> -->
+    <p class="name">{nameWrestling}</p>
     {#if nameReal}
-      <p class="real">
-        <span class="left">
-          <strong>
-            {@html lang($copy.real)}
-          </strong>
-        </span>
-        <span class="right">{nameReal}</span>
-      </p>
+      <p class="real">{nameReal}</p>
     {/if}
     {#if nameAlt}
-      <p class="aka">
-        <span class="left">
-          <strong>
-            {@html lang($copy.aka)}
-          </strong>
-        </span>
-        <span class="right">{nameAlt}</span>
-      </p>
+      <p class="alt">a.k.a. {nameAlt}</p>
+    {/if}
+  </div>
+
+  <div class="info">
+    {#if years}
+      <h4>Active Years</h4>
+      <p>{years}</p>
     {/if}
     {#if nationality}
-      <p class="nationality">
-        <span class="left">
-          <strong>
-            {@html lang($copy.nationality)}
-          </strong>
-        </span>
-        <span class="right">{nationality}</span>
-      </p>
-    {/if}
-    {#if years}
-      <p class="active">
-        <span class="left">
-          <strong>
-            {@html lang($copy.active)}
-          </strong>
-        </span>
-        <span class="right">{years}</span>
-      </p>
+      <h4>Nationality</h4>
+      <p>{nationality}</p>
     {/if}
   </div>
 
-  <div class="details" class:visible="{!showInfo}">
-    <div class="scroll">
-      {#if $mode === 'explore'}
-        <div class="explore">
-          <p class="description">
-            {@html description}
-          </p>
-        </div>
-      {:else if $mode === 'story' && $currentStory}
-        <div class="story">
-          <p class="description">
-            <strong>{slideTitle}:</strong>
-            {slideText}
-          </p>
-        </div>
-      {/if}
-    </div>
-  </div>
-
-  {#if $mode === 'story' && $currentStory}
-    <nav class="story-nav">
-      <button
-        class="dark"
-        class:disable="{disableL}"
-        on:click="{() => inc(-1)}">
-        {@html svgLeft}
-      </button>
-      <ul class="progress">
-        {#each $currentStory.slides as slide, i}
-          <li class:active="{$slideIndex === i}"></li>
-        {/each}
-      </ul>
-      <button
-        class="dark"
-        class:disable="{disableR}"
-        class:pulse
-        on:click="{() => inc(1)}">
-        {@html svgRight}
-      </button>
-    </nav>
-  {/if}
-  {#if $mode === 'explore'}
-    <nav class="explore-nav">
-      <button class="dark" on:click="{() => (reveal = false)}">
-        {@html lang($copy.close)}
-      </button>
-    </nav>
-  {/if}
+  <img src="./assets/images/title.png" />
 </section>

@@ -6,13 +6,14 @@
 	top $header-height
 	left 0
 	z-index 1000
-	visibility hidden
 	overflow hidden
 	padding 1rem
-	width 100%
-	height 100%
+	width 960px
+	height 540px
 	opacity 0
 	pointer-events none
+	outline 10px solid black
+	transition opacity 500ms
 
 	&.visible
 		visibility visible
@@ -33,7 +34,7 @@ h1
 	margin 0 auto
 	max-width 40rem
 	text-align center
-
+	display none
 	+mq('bp-640')
 		flex-direction row
 
@@ -63,6 +64,7 @@ h1
 
 p.loading
 	text-align center
+	display none !important
 
 p.byline
 	position absolute
@@ -72,6 +74,7 @@ p.byline
 	width 100%
 	text-align center
 	font-size 0.8em
+	display none
 
 	+mq('bp-480')
 		font-size 1em
@@ -96,6 +99,7 @@ p.byline
 
 canvas
 	margin 0 auto
+	margin-top 4rem
 
 .bg
 	position absolute

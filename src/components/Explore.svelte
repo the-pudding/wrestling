@@ -58,29 +58,13 @@
       return false;
     };
 
-    exploreData = $data.map(d => ({
-      ...d,
-      inactive: hide(d) || storyHide(d)
-    }));
+    exploreData = $data
+      .map(d => ({
+        ...d,
+        inactive: hide(d) || storyHide(d)
+      }))
+      .filter(d => d.start !== 2020);
 
-    if ($mode === "explore")
-      exploreData.sort(
-        (a, b) =>
-          d3Array.ascending(a.inactive, b.inactive) ||
-          d3Array.ascending(
-            typeof a.index === "string",
-            typeof b.index === "string"
-          ) ||
-          d3Array.ascending(a.id, b.id)
-      );
-    else
-      exploreData.sort(
-        (a, b) =>
-          d3Array.ascending(
-            typeof a.index === "string",
-            typeof b.index === "string"
-          ) || d3Array.ascending(a.id, b.id)
-      );
     exploreData.forEach((d, i) => {
       d.left = MARGIN + (i % units) * sz;
       d.top = Math.floor(i / units) * sz;
@@ -115,13 +99,7 @@
 
   afterUpdate(resize);
 
-  // onMount(() => {
-  //   let i = 0;
-  //   setInterval(() => {
-  //     i += 1;
-  //     $onDeck = exploreData[i];
-  //   }, 1500);
-  // });
+  onMount(() => {});
 </script>
 
 <section

@@ -32,6 +32,7 @@ function cleanData(values) {
     mask_theme_fr: splitTrim(d.mask_theme_fr),
     mask_theme_en: splitTrim(d.mask_theme_en),
     decade: getDecade(d.year_start, d.year_end),
+    start: d.year_start ? +d.year_start : 2021,
     x: +d.x,
     y: +d.y,
     index: d.name_crew === "Author" ? d.name_real.substring(0, 1) : i
@@ -42,6 +43,7 @@ async function loadData() {
   try {
     const d = await d3Fetch.csv("./assets/data/wrestlers.csv");
     const clean = cleanData(d);
+    clean.sort((a, b) => d3Array.ascending(a.start, b.start));
     return clean;
   } catch (err) {
     return err;

@@ -31,10 +31,5 @@
   <!-- <Long /> -->
 </article>
 <About />
-{#if !$data.length}
-  <p>
-    <strong>Loading...</strong>
-  </p>
-{/if}
 
 <svelte:window bind:innerHeight="{tempH}" />
