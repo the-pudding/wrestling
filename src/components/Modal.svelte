@@ -212,14 +212,19 @@
     return slide[prop].find(v => v.lang === $language).text;
   }
 
+  function kick() {
+    let i = 0;
+    setInterval(() => {
+      i += 1;
+      $onDeck = $data[i];
+    }, 3750);
+  }
   mode.subscribe(d => {
     if (d === "explore" && !$mobile) {
-      let i = 0;
-      setInterval(() => {
-        i += 1;
-        $onDeck = $data[i];
-      }, 4000);
-      setTimeout(() => ($onDeck = $data[0]), 500);
+      setTimeout(() => {
+        $onDeck = $data[0];
+        kick();
+      }, 1500);
     }
   });
 </script>

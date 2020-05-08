@@ -42,7 +42,7 @@ function cleanData(values) {
 async function loadData() {
   try {
     const d = await d3Fetch.csv("./assets/data/wrestlers.csv");
-    const clean = cleanData(d);
+    const clean = cleanData(d).filter(d => d.start < 2020);
     clean.sort((a, b) => d3Array.ascending(a.start, b.start));
     return clean;
   } catch (err) {

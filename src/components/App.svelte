@@ -14,20 +14,20 @@
   let mounted = false;
 
   $: if (mounted) {
-    if ($prevMode !== $mode && $prevMode !== "about" && $mode !== "intro") {
-      history.pushState($prevMode, null, `?${$mode}`);
-    } else if ($prevMode === "about" && $mode !== "intro")
-      history.replaceState(null, null, `?${$mode}`);
-    else history.replaceState(null, null, path);
+    // if ($prevMode !== $mode && $prevMode !== "about" && $mode !== "intro") {
+    //   history.pushState($prevMode, null, `?${$mode}`);
+    // } else if ($prevMode === "about" && $mode !== "intro")
+    //   history.replaceState(null, null, `?${$mode}`);
+    // else history.replaceState(null, null, path);
   }
 
   function handleState(e) {
-    $mode = e.state || "intro";
+    // $mode = e.state || "intro";
   }
 
   onMount(() => {
-    path = window.location.pathname;
-    mounted = true;
+    // path = window.location.pathname;
+    // mounted = true;
   });
 </script>
 

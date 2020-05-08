@@ -10,13 +10,16 @@
 	padding 1rem
 	width 960px
 	height 100vh
+	outline 10px solid black
 	background-image linear-gradient(lighten($yellow, 35) 0%, lighten($orange, 35) 100%)
 	color $off-black
+	opacity 0
+	transition opacity 1s ease-in-out
 	transform translateX(-100%)
-	outline 10px solid black
 
 	&.visible
 		visibility visible
+		opacity 1
 
 	&.reveal
 		transform translateX(0)
@@ -115,41 +118,44 @@ p.description
 	position absolute
 	top 1rem
 	left 2rem
+
 	p
 		margin 0
 		margin-bottom 0.5rem
-		line-height 1
 		font-size 18px
+		line-height 1
 
 p.crew
 	font-size 14px
 
 p.name
-	font-size 36px
-	font-weight bold
 	margin-top 1rem
+	font-weight bold
+	font-size 36px
 
 .info
 	position absolute
 	top 1rem
 	right 2rem
+
 	p, h4
 		margin 0
-		line-height 1
 		text-align right
-	
+		line-height 1
+
 	h4
-		font-size 16px
-		text-transform uppercase
 		margin-top 1rem
+		text-transform uppercase
+		font-size 16px
 
 	p
-		font-size 24px
 		font-weight bold
+		font-size 24px
+
 img
-	width 240px
 	position absolute
-	display block
 	bottom 0.5rem
 	left 1.5rem
+	display block
+	width 240px
 	transform translateY(50%)

@@ -10,14 +10,16 @@
 	padding 1rem
 	width 960px
 	height 540px
-	opacity 0
-	pointer-events none
 	outline 10px solid black
-	transition opacity 500ms
+	opacity 0
+	transition opacity 1s ease-in-out
+	// transform translate3d(0, 100%, 0)
+	pointer-events none
 
 	&.visible
 		visibility visible
 		opacity 1
+		// transform translate3d(0, 0, 0)
 		pointer-events auto
 
 h1
@@ -29,12 +31,13 @@ h1
 
 .choices
 	display flex
+	display none
 	flex-direction column
 	justify-content center
 	margin 0 auto
 	max-width 40rem
 	text-align center
-	display none
+
 	+mq('bp-640')
 		flex-direction row
 
@@ -63,18 +66,18 @@ h1
 		font-weight 700
 
 p.loading
-	text-align center
 	display none !important
+	text-align center
 
 p.byline
 	position absolute
 	bottom 0
 	left 0
+	display none
 	padding 0 1rem
 	width 100%
 	text-align center
 	font-size 0.8em
-	display none
 
 	+mq('bp-480')
 		font-size 1em
