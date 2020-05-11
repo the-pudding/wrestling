@@ -85,7 +85,7 @@
       "ga"
     );
     ga("set", "anonymizeIp", true);
-    ga("create", "{{meta.analytics}}", "auto");
+    ga("create", $meta.analytics, "auto");
     ga("send", "pageview");
   </script>
 {/if}
