@@ -33,7 +33,7 @@
   let currentTransition = "en";
 
   $: h = Math.max(0, $windowHeight - $HEADER_HEIGHT);
-  $: mult = Math.min(3, Math.floor(clientWidth / width));
+  $: mult = Math.min(3, (clientWidth - 32) / width);
   $: sprited = !!$sprite;
   $: if (livePixels && currentTransition !== $language) {
     livePixels = prepareTransition({

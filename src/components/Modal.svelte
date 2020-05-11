@@ -92,7 +92,8 @@
   $: if (["explore", "story"].includes($mode) && reveal && $mobile) {
     disableBodyScroll(modalEl);
   } else {
-    enableBodyScroll(modalEl);
+    if (modalEl) enableBodyScroll(modalEl);
+    else enableBodyScroll();
   }
 
   $: if ($currentStory) {
