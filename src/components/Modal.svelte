@@ -252,6 +252,7 @@
         }}">
         <span class:visible="{!showInfo}">
           {@html svgPlus}
+          {@html lang($copy.info)}
         </span>
         <span class:visible="{showInfo}">
           {@html svgX}

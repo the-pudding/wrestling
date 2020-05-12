@@ -8,21 +8,29 @@
     copy,
     mode,
     updateMode,
-    storyHed
+    storyHed,
+    language
   } from "./../components/utils/stores.js";
   import Filters from "./../components/Filters.svelte";
   import svgFile from "./../svg/file-text.svg";
   import svgLeft from "./../svg/arrow-left-circle.svg";
   import svgInfo from "./../svg/info.svg";
+
+  let hed;
+  $: if ($mode === "story") {
+    const m = $copy.stories.find(d => d.hed[0].text === $storyHed);
+    if (m) hed = m.hed.find(d => d.lang === $language).text;
+  }
 </script>
 
 <button class="back alt" on:click="{() => updateMode('intro')}">
-  {#if $mode === 'story'}
+  <span class="span-mode" class:visible="{$mode === 'story'}">
     {@html lang($copy.modeStory)}
-    &nbsp;| {$storyHed}
-  {:else if $mode === 'explore'}
+    &nbsp;| {hed}
+  </span>
+  <span class="span-mode" class:visible="{$mode === 'explore'}">
     {@html lang($copy.modeExplore)}
-  {/if}
+  </span>
   {@html svgLeft}
 </button>
 
