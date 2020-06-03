@@ -9,6 +9,7 @@
   import Header from "./../components/Header.svelte";
   import Article from "./../components/Article.svelte";
   import { prevMode, mode } from "./../components/utils/stores.js";
+  import loadImage from "./../components/utils/load-image.js";
 
   let path = "";
   let mounted = false;
@@ -28,6 +29,8 @@
   onMount(() => {
     path = window.location.pathname;
     mounted = true;
+    const r = encodeURI(document.referrer);
+    if (r) loadImage(`https://logs.pudding.cool/ping.gif?referrer=${r}`);
   });
 </script>
 
