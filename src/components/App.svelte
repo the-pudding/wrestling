@@ -29,8 +29,6 @@
   onMount(() => {
     path = window.location.pathname;
     mounted = true;
-    const r = encodeURI(document.referrer);
-    if (r) loadImage(`https://logs.pudding.cool/ping.gif?referrer=${r}`);
   });
 </script>
 
